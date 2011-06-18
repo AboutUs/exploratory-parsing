@@ -1,0 +1,83 @@
+body { margin: 0; padding: 0; font-family: "Helvetica"; }
+select,textarea,input { font-family: "Monaco"; margin: 0 10px 10px 0; font-size: 12px;}
+textarea { width: 100%; height: 70%; }
+
+#header { background: #ccc; padding: 10px; }
+#header h1 { margin: 0 0 10px 0; padding: 0; }
+#content { padding: 10px }
+
+.col { float: left; }
+.col.runs {
+  width : 35%;
+}
+.col.new-run {
+  width : 65%;
+}
+
+.details { color: #999; font-style: oblique; font-size: 12px; }
+table.runs {
+  border-collapse : collapse;
+}
+.runs tr.hover {
+  background : #ddd;
+}
+.runs th {
+  text-align : right;
+}
+.runs th,
+.runs td {
+  padding : .1em .1em .1em 1em;
+}
+.runs .controls {
+  padding : 0 1em;
+  display : none;
+}
+.runs .hover .controls {
+  display : table-cell;
+}
+.controls .delete {
+  color : #900;
+  font-weight : bold;
+  cursor : pointer;
+}
+.controls .delete:hover {
+  text-decoration : underline;
+}
+.runs .run.deleted td,
+.runs .run.deleted td a {
+  color : #999 !important;
+}
+
+.run.current{
+  background: #ffc;
+}
+textarea {
+  padding : .5em;
+}
+#preview {
+  border : 3px solid #ddd;
+  -moz-border-radius : 3px;
+  position : absolute;
+  left : 300px;
+  padding: 5px;
+  display : none;
+  background: #fff;
+}
+#content .offset.flow {
+  white-space : normal;
+}
+
+.diff{overflow:auto;}
+.diff ul{background:#fff;overflow:auto;font-size:12px;list-style:none;margin:0;padding:0;display:table;width:100%;}
+.diff del, .diff ins{display:block;text-decoration:none;}
+.diff li{padding:0; display:table-row;height:1.5em;margin: 0;}
+.diff li.ins{background:#dfd; color:#080}
+.diff li.del{background:#fee; color:#b00}
+.diff li:hover{background:#ffc}
+.diff del, .diff ins, .diff span{white-space:pre-wrap;font-family: "Monaco";}
+.diff li.ins strong{font-weight:normal; background: #9f9 }
+.diff li.del strong{font-weight:normal; background: #fcc }
+
+.icon {
+  border : 0;
+}

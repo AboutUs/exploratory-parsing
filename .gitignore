@@ -1,0 +1,14 @@
+pid.txt
+public/results
+sample
+*.dSYM
+*.leg.c
+*.peg.c
+runs
+data
+scan
+stash
+tally.dot
+tally.txt
+*~
+*#*

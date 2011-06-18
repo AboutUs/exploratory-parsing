@@ -1,0 +1,24 @@
+%h2= @run
+- if File.exists?("runs/#{@run}/tally.dot")
+  %a{ :href=>"/runs/#{@run}.dot" } Dot
+- if File.exists?("runs/#{@run}/profile.txt")
+  %a{ :href=>"/runs/#{@run}/profile" } Profile
+- if File.exists?("runs/#{@run}/bindings.txt") && !File.zero?("runs/#{@run}/bindings.txt")
+  %a{ :href=>"/runs/#{@run}/bindings" } Bindings
+
+- if @log.size > 0
+  %h3 Log
+  %pre><= h @log
+
+- if @pid
+  %h3 Running
+  = "process id #{@pid.strip}"
+  %form{ :action => "/runs/#{@run}/kill", :method => 'post' }
+    %input{ :type => 'submit', :value => 'kill' }
+  %form{ :action => "/runs/#{@run}/gdb", :method => 'post' }
+    %input{ :type => 'submit', :value => 'gdb' }
+
+%h3 Results
+%object{ :data => "/runs/#{@run}.svg", :type => 'image/svg+xml', :id => 'dot' }
+
+

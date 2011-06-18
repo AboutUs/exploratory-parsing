@@ -1,0 +1,10 @@
+:erb
+  <h1>Offsets</h1>
+  <a href="#" onclick="$('pre').toggleClass('flow'); return false;">Flow</a>
+  <% @text_blocks.each do |text_block| %>
+  <h2><%= h text_block[:offset] %></h2>
+  <div class="details">File: <%= h text_block[:filename].strip %> Offset: <%= h text_block[:position] %></div>
+  <pre class="offset">
+  <span style="color:green;"><%= h( text_block[:prefix]) %></span><span style="color: green; background: yellow;"><%= h( text_block[:match]) %></span><span style="color: red;"><%= h( text_block[:sufix]) %></span>
+  </pre>
+  <% end %>

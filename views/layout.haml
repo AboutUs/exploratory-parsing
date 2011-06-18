@@ -1,0 +1,18 @@
+%html
+  %head
+    %title Exploratory Parsing
+    %script{ :src => '/javascripts/jquery-1.4.4.min.js', :type => 'text/javascript' }
+    %script{ :src => '/javascripts/app.js', :type => 'text/javascript' }
+    %link{ :rel => 'stylesheet', :href => '/stylesheets/app.css', :type => 'text/css' }
+  %body
+    #header
+      %h1 Exploratory Parsing
+      #navigation
+        %a{ :href => '/' } Home
+        %a{ :href => '/ls/data' } Data
+        %a{ :href => '/ls/runs' } Runs
+        %a{ :href => '/ps' } Proc
+        %a{ :href => '/git/log' } Log
+        %a{ :href => '/pr/code' } Code
+    #content
+      = yield

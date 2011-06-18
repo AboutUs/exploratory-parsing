@@ -1,0 +1,44 @@
+.col.runs
+  %h2 Recent Runs
+  %table.runs
+    %tr
+      %th{ :align => 'right' } run
+      %th{ :align => 'right' } leg
+      %th{ :align => 'right' } vers
+      %th{ :align => 'right' } data
+      %th{ :align => 'right' } dot
+      -# %th{ :align => 'right' } pid
+    - @runs.sort.each do |run|
+      - classes = [:run]
+      - (classes << :current) if run == session[:run]
+      %tr{ :class => classes.join(" "), :id => run }
+        %td
+          %a{ :href => "runs/#{run}" }= run[8..13]
+        - leg = begin File.read "runs/#{run}/parse.leg" rescue "" end
+        %td{ :class => 'leg', :align => 'right' }
+          = leg.length
+        %td{ :class => 'leg', :align => 'right' }
+          = $1 if leg =~ /(\w+)/
+        %td{ :align => 'right' }
+          - offset = begin File.read("runs/#{run}/tally.txt").strip rescue "" end
+          %a{ :href => ("runs/#{run}/offsets?offsets=#{offset}-0") }
+            = n offset
+        %td{ :align => 'right' }
+          = begin File.size "runs/#{run}/tally.dot" rescue "" end
+        -# %td{ :align => 'right' }
+        -#   = begin File.read "runs/#{run}/pid.txt" rescue "" end
+        %td.controls
+          %a.delete x
+.col.new-run
+  %h2 New Run
+  %form{ :action => '/start', :method => 'post' }
+    %select{ :name => 'data' }
+      - Dir.chdir 'data' do
+        - `du -hs *`.each do |$_| (bytes, file) = split
+          %option{ :value => file, :selected => session[:data]==file ? "selected" : nil } #{file} (#{bytes})
+    %input{ :type => 'submit', :value => ' start ' }
+    %br
+    %textarea.scaled{ :id => 'grammar', :name => 'grammar' }><= h @current_grammar
+
+#preview
+  %div
