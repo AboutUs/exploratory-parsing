@@ -12,3 +12,5 @@ tally.dot
 tally.txt
 *~
 *#*
+.DS_Store
+*.swp
