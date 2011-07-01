@@ -35,9 +35,9 @@ def text_blocks_for_offset(run, offset, length)
   files = `ls runs/#{run}/data`
   position = offset
   files.split("\n").each do |filename|
-    filesize = File.stat("runs/#{run}/data/#{filename.strip}").size
+    filesize = File.stat("runs/#{run}/data/#{filename}").size
     if position <= filesize
-      return File.open("runs/#{run}/data/#{filename.strip}", 'r') do |file|
+      return File.open("runs/#{run}/data/#{filename}", 'r') do |file|
         prefix = position < 1000 ? position : 1000
         file.sysseek position - prefix
         {:filename => filename, :position => position, :offset => offset, :prefix => file.read(prefix), :match => file.read(length), :sufix => file.read(1000)}
