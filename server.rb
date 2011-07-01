@@ -34,7 +34,7 @@ end
 def text_blocks_for_offset(run, offset, length)
   files = `ls runs/#{run}/data`
   position = offset
-  files.each do |filename|
+  files.split("\n").each do |filename|
     filesize = File.stat("runs/#{run}/data/#{filename.strip}").size
     if position <= filesize
       return File.open("runs/#{run}/data/#{filename.strip}", 'r') do |file|
