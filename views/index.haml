@@ -34,7 +34,8 @@
   %form{ :action => '/start', :method => 'post' }
     %select{ :name => 'data' }
       - Dir.chdir 'data' do
-        - `du -hs *`.each do |$_| (bytes, file) = split
+        - `du -hs *`.each_line do |l| 
+          = (bytes, file) = l.split
           %option{ :value => file, :selected => session[:data]==file ? "selected" : nil } #{file} (#{bytes})
     %input{ :type => 'submit', :value => ' start ' }
     %br
