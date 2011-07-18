@@ -160,6 +160,7 @@ post '/start' do
     FileUtils.ln "data/#{data}-Selected/selected.txt", "runs/#{run}/"
   end
   system("sh start_run.sh #{run} > runs/#{run}/output.log 2>&1 &")
+  sleep 2
   redirect session[:vers] || '/'
 end
 
