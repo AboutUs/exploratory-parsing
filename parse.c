@@ -10,6 +10,7 @@ void done();
 
 struct { int begin, end; } bindings[100];
 void bind(int b);
+void bind_num(int b, int n);
 void bind_end(int b);
 
 void write_selected(char *buf, int len);
@@ -42,6 +43,10 @@ void bind(int b) {
 	bindings[b].begin = yythisthunk->mybegin;
 	bindings[b].end = yythisthunk->myend;
 }
+void bind_num(int b, int n) {
+	bindings[b].begin = -2;
+	bindings[b].end = n;
+}
 void bind_end(int b) {
 	bindings[b].end = yythisthunk->myend;
 }
@@ -62,6 +67,8 @@ void write_binding() {
 		for (int i=0; i<=max; i++) {
 			if (bindings[i].begin == -1) {
 				fprintf(binding_file, "\t");
+			} else if (bindings[i].begin == -2) {
+				fprintf(binding_file, "%d%s", bindings[i].end, i!=max ? "\t" : "\n");
 			} else {
 				yyText(bindings[i].begin, bindings[i].end); fprintf(binding_file, "%s%s", yytext, i!=max ? "\t" : "\n");
 			}
