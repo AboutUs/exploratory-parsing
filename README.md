@@ -25,7 +25,15 @@ Download sample data.
 
 Launch the server.
 
-	ruby server.rb
+	rackup
+
+Alternative Installation (Docker)
+---------------------------------
+
+	docker-compose run --rm bootstrap
+	docker-compose up -d web
+
+Then point your web browser at:  http://your-docker-host:8080/
 
 Usage
 -----
@@ -45,4 +53,3 @@ License
 -------
 
 Licensed under the MIT License.
-

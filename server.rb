@@ -1,10 +1,13 @@
 $KCODE = "U"
 require 'rubygems'
-require 'sinatra'
+require 'sinatra/base'
 require 'haml'
 require 'fileutils'
 require "diffy"
 
+class Server < Sinatra::Base
+
+set :bind, "0.0.0.0"
 set :port, 8080
 enable :sessions
 
@@ -187,4 +190,6 @@ end
 get '/pr/code' do
   content_type 'text/plain'
   `pr -n -t parse.leg.c`
+end
+
 end

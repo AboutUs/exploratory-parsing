@@ -1,0 +1,27 @@
+# 'bootstrap' service below sets up the persistent storage used by the
+# 'web' service.  Adapt the bootstrap service to install other data
+# sources into the /exploratory-parsing/data directory.
+
+version: '2'
+
+services:
+  bootstrap:
+    image: buildpack-deps:jessie
+    volumes:
+      - "storage:/exploratory-parsing"
+      - ".:/usr/local/src/exploratory-parsing"
+    working_dir: /exploratory-parsing
+    command: >
+      bash -c "cp -R /usr/local/src/exploratory-parsing /
+      && sh scripts/download_world_factbook.sh
+      && chown -R 1000:50 /exploratory-parsing"
+  web:
+    build:
+      context: .
+    ports:
+      - 8080:8080
+    volumes:
+      - "storage:/exploratory-parsing"
+
+volumes:
+  storage: {}
